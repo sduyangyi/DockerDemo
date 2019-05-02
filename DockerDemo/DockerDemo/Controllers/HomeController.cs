@@ -15,23 +15,12 @@ namespace DockerDemo.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Articles()
+
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            var model = new ArticlesViewModel();
+            model.Articles = new ArticleRepository().GetLatest();
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
